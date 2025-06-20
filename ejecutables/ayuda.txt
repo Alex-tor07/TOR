@@ -1,0 +1,26 @@
+# Dirección de red de los contenedores y puerto con la máquina anfitrió
+
+-----Entorno de desarrollo web-----
+pma 10.33.3.150  localhost:5050
+mysql 10.33.3.200 localhost:3306
+server 10.33.3.100 localhost:4040
+
+-----Entorno de monitorización-----
+prometheus localhost:9090
+telegraf localhost:9273
+influxdb localhost:8086
+loki localhost:3100
+grafana localhost:3000
+
+# Contraseñas necesarias de los contenedores
+
+-----Entorno de desarrollo web-----
+mysql user:root password:rootpass
+
+----Entorno de monitorización-----
+user:admin     password:admin
+
+# composer create-project laravel/laravel /var/www/html/laravelf
+#chown -R www-data:www-data /var/www/html/laravelf
+#chmod -R 775 /var/www/html/laravelf
+#php artisan migrate /var/www/html/laravelf

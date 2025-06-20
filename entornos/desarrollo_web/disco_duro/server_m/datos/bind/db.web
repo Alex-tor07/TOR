@@ -1,0 +1,17 @@
+;
+; 
+;
+$TTL	604800
+@	IN	SOA	. root.. (
+			      1		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;ns
+;ns
+@	IN	NS	server.
+;host
+
+server.	IN	A	10.33.3.100	
+www	IN	A	10.33.3.100

@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - ./disco_duro/mysql_m/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      red_local:
+        ipv4_address: 10.33.3.200
+        
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: pma
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    ports:
+      - "5050:80"
+    depends_on:
+      - mysql
+    networks:
+      red_local:
+        ipv4_address: 10.33.3.150
+
+  debian:
+    image: server
+    container_name: server
+    hostname: server
+    restart: unless-stopped
+    networks:
+      red_local:
+        ipv4_address: 10.33.3.100
+    volumes:
+      - ./disco_duro/server_m/datos:/datos
+      - ./disco_duro/server_m/datos/bind/db.web:/etc/bind/db.web
+      - ./disco_duro/server_m/datos/bind/named.conf.local:/etc/bind/named.conf.local
+      - ./disco_duro/server_m/datos/apache2/www.http.conf:/etc/apache2/sites-available/www.http.conf
+      - ./disco_duro/server_m/datos/apache2/www.https.conf:/etc/apache2/sites-available/www.https.conf
+      - ./disco_duro/server_m/datos/localhost:/var/www/html
+      - ./disco_duro/server_m/datos/public_html:/home/web/public_html
+    stdin_open: true       # Para que funcione el modo interactivo (como -it)
+    ports:
+      - "4040:80"
+    depends_on:
+      - mysql
+networks:
+  red_local:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.33.3.0/24
