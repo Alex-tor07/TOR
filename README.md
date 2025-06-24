@@ -47,5 +47,10 @@ Este proyecto fue desarrollado como Trabajo de Fin de Grado del ciclo ASIR. Busc
    
  5. Leer la ayuda de la API, para conocer puertos red y contraseñas.
 
+## 🔧 Requisitos
+ - Sistema Linux
+ - Docker
+ - python
+ - gedit
 ## 🎥 Video sobre el proyecto
 [![Logo del video](https://img.youtube.com/vi/mXYSBbR64i0/0.jpg)](https://youtu.be/mXYSBbR64i0)
